@@ -1,0 +1,153 @@
+/*-------------------重置css样式-------------------*/
+
+html{}
+body{
+  color:#333;
+  font-size: 14px;
+  background: #f6f7fe;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif,'microsoft yahei';
+  -webkit-font-smoothing: antialiased;//字体抗锯齿渲染
+  -moz-osx-font-smoothing: grayscale;//字体抗锯齿渲染
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,span,a{
+  margin:0;
+  padding:0;
+  text-decoration:none;
+}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img,iframe{border:0;}
+:focus{outline:0}
+address,caption,cite,code,dfn,em,strong,th,var{font-weight:normal;font-style:normal;}
+ol,ul{list-style:none}
+li{list-style:none}
+caption,th{text-align:left}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after{content:''}
+abbr,acronym{border:0;font-variant:normal}
+a{text-decoration: none;color:inherit;}
+/* to preserve line-height and selector appearance */
+sup{vertical-align:text-top}
+sub{vertical-align:text-bottom}
+/*input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit; vertical-align:middle;}*/
+/*to enable resizing for IE*/
+input,
+textarea,
+select{*font-size:100%}
+/*because legend doesn't inherit in IE */
+legend{color:#000}
+/*clear float*/
+.fLeft{float:left;}
+.fRight{float:right;}
+.align-center{text-align: center;}
+.align-right{text-align: right;}
+.clear-float{clear: both;}
+.clearFloat:after{display:block;clear:both;content:"";visibility:hidden;height:0}
+.clearFloat{zoom:1}
+/*是否可选中文字*/
+/*:not(input){*/
+/*-webkit-user-select:none;*/
+/*-webkit-tap-highlight-color:rgba(0,0,0,0);*/
+/*-webkit-touch-callout:none;*/
+/*-webkit-text-size-adjust:none;*/
+/*}*/
+*{
+  -webkit-appearance:none;
+}
+
+
+/*-------------------公用css样式-------------------*/
+#app {
+  //变量定义
+  $color-white: #fff;
+
+  $leftSideWidth:240px;
+  $leftSideWidthCollapse:64px;
+
+  $transSeconds:0.4s;
+
+  >#header{//公告头部样式
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 100;
+    width:100%;
+    padding-left:$leftSideWidth;
+    transition: padding-left $transSeconds;
+    -moz-transition: padding-left $transSeconds; /* Firefox 4 */
+    -webkit-transition: padding-left $transSeconds; /* Safari 和 Chrome */
+    -o-transition: padding-left $transSeconds; /* Opera */
+    background:$color-white;
+  }
+  >#header.isC{//收起时的样式
+    padding-left:$leftSideWidthCollapse;
+  }
+  >#leftSider{//公告左侧边栏样式
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 101;
+    height: 100%;
+    background-color:$color-white;
+    >.happy-scroll-1{
+      width: $leftSideWidth !important;
+      .happy-scroll-container{
+        width: $leftSideWidth !important;
+        .happy-scroll-content{
+          border-right: 0px !important;
+          border-bottom: 0px !important;
+        }
+      }
+    }
+    >.happy-scroll-1.isC{
+      width: $leftSideWidthCollapse !important;
+      .happy-scroll-container{
+        width: $leftSideWidthCollapse !important;
+      }
+    }
+    >.happy-scroll-1.isCS{
+      width: 0px !important;
+      .happy-scroll-container{
+        width: 0px !important;
+      }
+    }
+    >.happy-scroll-1 .el-menu-vertical-demo.el-menu{
+      border-right: 0px;
+    }
+    >.happy-scroll-1 .el-menu-vertical-demo:not(.el-menu--collapse) {
+      width:$leftSideWidth;
+    }
+  }
+  >#rightMainBox{//右侧路由盒子
+    margin-left: $leftSideWidth;
+    transition: margin-left $transSeconds;
+    -moz-transition: margin-left $transSeconds; /* Firefox 4 */
+    -webkit-transition: margin-left $transSeconds; /* Safari 和 Chrome */
+    -o-transition: margin-left $transSeconds; /* Opera */
+    margin-top: 61px;
+  }
+  >#rightMainBox.isC{//收起时的样式
+    margin-left: $leftSideWidthCollapse;
+  }
+
+  //媒体查询
+  @media screen and (max-width: 700px) {
+    >#header{
+      padding-left:0px !important;
+      z-index: 102;
+      background: transparent;
+    }
+    >#leftSider{
+      //background: transparent;
+      >.happy-scroll-1 .el-menu-vertical-demo.el-menu--collapse {
+        display: none;
+      }
+    }
+    >#rightMainBox{
+      margin-left: 0px !important;
+    }
+  }
+
+}
